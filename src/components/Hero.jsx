@@ -2,6 +2,7 @@ import { useState } from "react";
 import Buttons from "./Buttons";
 import Navbar from "./Navbar";
 import Sidemenu from "./Sidemenu";
+import Transition from "./Transition";
 
 export default function Hero() {
   const [opened, setOpened] = useState(false);
