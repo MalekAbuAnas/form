@@ -10,7 +10,7 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 .hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)),
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)),
     url("./assets/BG02.jpg") fixed;
   background-position: center;
   background-size: cover;
@@ -116,6 +116,12 @@
   height: 100%;
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0px;
+}
+.daily-form {
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
+    url("./assets/BG05.jpg") fixed;
+  background-size: cover;
+  background-position: center;
 }
 /* .btn span {
   position: absolute;

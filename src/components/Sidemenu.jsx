@@ -1,9 +1,13 @@
 // import { Illustration01 } from "../assets/index";
 import { Transition } from "./index";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Sidemenu({ opened, close }) {
   const [trns, setTrns] = useState(false);
+
+  const navigate = useNavigate();
+
   return (
     <>
       <div
@@ -24,7 +28,12 @@ export default function Sidemenu({ opened, close }) {
         <div className="content w-[100vw] h-[100%] flex items-center justify-center">
           <div className="w-[50vw] h-full bg-c-brown items-center justify-center text-center  py-64">
             <button
-              onClick={() => setTrns(true)}
+              onClick={() => {
+                setTrns(true);
+                setTimeout(() => {
+                  navigate("/monthlysales");
+                }, 1000);
+              }}
               className="w-fit h-fit bg-none border-[1px] border-[#fff] text-[#fff] py-10 px-20 font-yeseva text-3xl duration-500 hover:bg-[#fff] hover:text-c-brown min-w-[400px]"
             >
               Monthly Sales
@@ -32,7 +41,12 @@ export default function Sidemenu({ opened, close }) {
           </div>
           <div className="w-[50vw] h-full bg-[#fff] items-center justify-center text-center py-64">
             <button
-              onClick={() => setTrns(true)}
+              onClick={() => {
+                setTrns(true);
+                setTimeout(() => {
+                  navigate("/dailysales");
+                }, 1000);
+              }}
               className="w-fit h-fit bg-none border-[1px] border-c-brown py-10 px-20 font-yeseva text-3xl duration-500 hover:bg-c-brown hover:text-[#fff] min-w-[400px]"
             >
               Daily Sales

@@ -7,6 +7,7 @@ export default {
       "hero-pattern01": "url('./src/assets/BG01.jpg')",
       "hero-pattern02": "url('./src/assets/BG02.jpg')",
       "sidemenu-pattern": "url('./src/assets/BG03.jpg')",
+      "daily-form-bg": "url('./src/assets/BG04.jpeg')",
     },
     fontFamily: {
       yeseva: "Yeseva One",
