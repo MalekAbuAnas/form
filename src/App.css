@@ -118,7 +118,7 @@
   border-bottom-left-radius: 0px;
 }
 .daily-form {
-  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
+  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
     url("./assets/BG05.jpg") fixed;
   background-size: cover;
   background-position: center;

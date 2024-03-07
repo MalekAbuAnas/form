@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
   return (
     <div className="navbar container flex w-full mx-auto py-10 items-center justify-between px-40">
-      <h3 className="text-[#fff] text-xl font-yeseva">Gulnar Cafe & Sweets</h3>
+      <Link to={"/"}>
+        <h3 className="text-[#fff] text-xl font-yeseva">
+          Gulnar Cafe & Sweets
+        </h3>
+      </Link>
       <button className="cbtn" data-another-text="Contact Us">
         Contact Support
       </button>
