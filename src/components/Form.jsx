@@ -145,38 +145,39 @@ const Form = ({ token }) => {
   const [dayThirtyComment, setDayThirtyComment] = useState("");
   const [dayThirtyoneComment, setDayThirtyoneComment] = useState("");
 
-  const grandTotalAmount =
+  const grandTotalAmount = Number(
     dayOneAmount +
-    dayTwoAmount +
-    dayThreeAmount +
-    dayFourAmount +
-    dayFiveAmount +
-    daySixAmount +
-    daySevenAmount +
-    dayEightAmount +
-    dayNineAmount +
-    dayTenAmount +
-    dayElevenAmount +
-    dayTwelveAmount +
-    dayThirteenAmount +
-    dayFourteenAmount +
-    dayFifteenAmount +
-    daySixteenAmount +
-    daySeventeenAmount +
-    dayEighteenAmount +
-    dayNineteenAmount +
-    dayTwentyAmount +
-    dayTwentyoneAmount +
-    dayTwentytwoAmount +
-    dayTwentythreeAmount +
-    dayTwentyfourAmount +
-    dayTwentyfiveAmount +
-    dayTwentysixAmount +
-    dayTwentysevenAmount +
-    dayTwentyeightAmount +
-    dayTwentynineAmount +
-    dayThirtyAmount +
-    dayThirtyoneAmount;
+      dayTwoAmount +
+      dayThreeAmount +
+      dayFourAmount +
+      dayFiveAmount +
+      daySixAmount +
+      daySevenAmount +
+      dayEightAmount +
+      dayNineAmount +
+      dayTenAmount +
+      dayElevenAmount +
+      dayTwelveAmount +
+      dayThirteenAmount +
+      dayFourteenAmount +
+      dayFifteenAmount +
+      daySixteenAmount +
+      daySeventeenAmount +
+      dayEighteenAmount +
+      dayNineteenAmount +
+      dayTwentyAmount +
+      dayTwentyoneAmount +
+      dayTwentytwoAmount +
+      dayTwentythreeAmount +
+      dayTwentyfourAmount +
+      dayTwentyfiveAmount +
+      dayTwentysixAmount +
+      dayTwentysevenAmount +
+      dayTwentyeightAmount +
+      dayTwentynineAmount +
+      dayThirtyAmount +
+      dayThirtyoneAmount
+  );
 
   const grandTotalInvoices =
     dayOneInv +
@@ -277,9 +278,9 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-01T00:00:00`,
-        TotalInvoices: dayOneInv,
-        TotalItemSold: dayOneItemSold,
-        TransactionAmount: dayOneAmount,
+        TotalInvoices: Number(dayOneInv),
+        TotalItemSold: Number(dayOneItemSold),
+        TransactionAmount: Number(dayOneAmount),
 
         SaleTransactionComments: dayOneComment,
         FileAttachmentBase64: null,
