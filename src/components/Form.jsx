@@ -145,6 +145,105 @@ const Form = ({ token }) => {
   const [dayThirtyComment, setDayThirtyComment] = useState("");
   const [dayThirtyoneComment, setDayThirtyoneComment] = useState("");
 
+  const grandTotalAmount =
+    dayOneAmount +
+    dayTwoAmount +
+    dayThreeAmount +
+    dayFourAmount +
+    dayFiveAmount +
+    daySixAmount +
+    daySevenAmount +
+    dayEightAmount +
+    dayNineAmount +
+    dayTenAmount +
+    dayElevenAmount +
+    dayTwelveAmount +
+    dayThirteenAmount +
+    dayFourteenAmount +
+    dayFifteenAmount +
+    daySixteenAmount +
+    daySeventeenAmount +
+    dayEighteenAmount +
+    dayNineteenAmount +
+    dayTwentyAmount +
+    dayTwentyoneAmount +
+    dayTwentytwoAmount +
+    dayTwentythreeAmount +
+    dayTwentyfourAmount +
+    dayTwentyfiveAmount +
+    dayTwentysixAmount +
+    dayTwentysevenAmount +
+    dayTwentyeightAmount +
+    dayTwentynineAmount +
+    dayThirtyAmount +
+    dayThirtyoneAmount;
+
+  const grandTotalInvoices =
+    dayOneInv +
+    dayTwoInv +
+    dayThreeInv +
+    dayFourInv +
+    dayFiveInv +
+    daySixInv +
+    daySevenInv +
+    dayEightInv +
+    dayNineInv +
+    dayTenInv +
+    dayElevenInv +
+    dayTwelveInv +
+    dayThirteenInv +
+    dayFourteenInv +
+    dayFifteenInv +
+    daySixteenInv +
+    daySeventeenInv +
+    dayEighteenInv +
+    dayNineteenInv +
+    dayTwentyInv +
+    dayTwentyoneInv +
+    dayTwentytwoInv +
+    dayTwentythreeInv +
+    dayTwentyfourInv +
+    dayTwentyfiveInv +
+    dayTwentysixInv +
+    dayTwentysevenInv +
+    dayTwentyeightInv +
+    dayTwentynineInv +
+    dayThirtyInv +
+    dayThirtyoneInv;
+
+  const grandTotalSoldItemms =
+    dayOneItemSold +
+    dayTwoItemSold +
+    dayThreeItemSold +
+    dayFourItemSold +
+    dayFiveItemSold +
+    daySixItemSold +
+    daySevenItemSold +
+    dayEightItemSold +
+    dayNineItemSold +
+    dayTenItemSold +
+    dayElevenItemSold +
+    dayTwelveItemSold +
+    dayThirteenItemSold +
+    dayFourteenItemSold +
+    dayFifteenItemSold +
+    daySixteenItemSold +
+    daySeventeenItemSold +
+    dayEighteenItemSold +
+    dayNineteenItemSold +
+    dayTwentyItemSold +
+    dayTwentyoneItemSold +
+    dayTwentytwoItemSold +
+    dayTwentythreeItemSold +
+    dayTwentyfourItemSold +
+    dayTwentyfiveItemSold +
+    dayTwentysixItemSold +
+    dayTwentysevenItemSold +
+    dayTwentyeightItemSold +
+    dayTwentynineItemSold +
+    dayThirtyItemSold +
+    dayThirtyoneItemSold;
+
   const formattedDate =
     currentDate.toISOString().split("T")[0] +
     "T" +
@@ -153,16 +252,6 @@ const Form = ({ token }) => {
     ("0" + currentDate.getMinutes()).slice(-2) +
     ":" +
     ("0" + currentDate.getSeconds()).slice(-2);
-
-  useEffect(() => {
-    console.log(
-      `${currentYear}-${
-        String(currentMonth + 1).length === 1
-          ? `0${currentMonth + 1}`
-          : currentMonth
-      }-01T00:00:00`
-    );
-  });
 
   const body = {
     LeaseCode: "t0001235",
@@ -426,8 +515,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-08T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-08T00:00:00`,
+        TransactionAmount: dayEightAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -438,11 +531,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayEightComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayEightInv,
+        TotalItemSold: dayEightItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -457,8 +550,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-09T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-09T00:00:00`,
+        TransactionAmount: dayNineAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -469,11 +566,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayNineComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayNineInv,
+        TotalItemSold: dayNineItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -488,8 +585,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-10T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-10T00:00:00`,
+        TransactionAmount: dayTenAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -500,11 +601,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayTenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayTenInv,
+        TotalItemSold: dayTenItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -519,8 +620,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-11T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-11T00:00:00`,
+        TransactionAmount: dayElevenAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -531,11 +636,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayElevenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayElevenInv,
+        TotalItemSold: dayElevenItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -550,8 +655,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-12T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-12T00:00:00`,
+        TransactionAmount: dayTwelveAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -562,11 +671,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayTwelveComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayTwelveInv,
+        TotalItemSold: dayTwelveItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -581,8 +690,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-13T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-13T00:00:00`,
+        TransactionAmount: dayThirteenAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -593,11 +706,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayThirteenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayThirteenInv,
+        TotalItemSold: dayThirteenItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -612,8 +725,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-14T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-14T00:00:00`,
+        TransactionAmount: dayFourteenAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -624,11 +741,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayFourteenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayFourteenInv,
+        TotalItemSold: dayFourteenItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -643,8 +760,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-15T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-15T00:00:00`,
+        TransactionAmount: dayFifteenAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -655,11 +776,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayFifteenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayFifteenInv,
+        TotalItemSold: dayFifteenItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -674,8 +795,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-16T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-16T00:00:00`,
+        TransactionAmount: daySixteenAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -686,11 +811,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: daySixteenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: daySixteenInv,
+        TotalItemSold: daySixteenItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -705,8 +830,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-17T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-17T00:00:00`,
+        TransactionAmount: daySeventeenAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -717,11 +846,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: daySeventeenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: daySeventeenInv,
+        TotalItemSold: daySeventeenItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -736,8 +865,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-18T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-18T00:00:00`,
+        TransactionAmount: dayEighteenAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -748,11 +881,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayEighteenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayEighteenInv,
+        TotalItemSold: dayEighteenItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -767,8 +900,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-19T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-19T00:00:00`,
+        TransactionAmount: dayNineteenAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -779,11 +916,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayNineteenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayNineteenInv,
+        TotalItemSold: dayNineteenItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -798,8 +935,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-20T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-20T00:00:00`,
+        TransactionAmount: dayTwentyAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -810,11 +951,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayTwentyComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayTwentyInv,
+        TotalItemSold: dayTwentyItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -829,8 +970,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-21T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-21T00:00:00`,
+        TransactionAmount: dayTwentyoneAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -841,11 +986,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayTwentyoneComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayTwentyoneInv,
+        TotalItemSold: dayTwentyoneItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -860,8 +1005,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-22T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-22T00:00:00`,
+        TransactionAmount: dayTwentytwoAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -872,11 +1021,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayTwentytwoComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayTwentytwoInv,
+        TotalItemSold: dayTwentytwoItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -891,8 +1040,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-23T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-23T00:00:00`,
+        TransactionAmount: dayTwentythreeAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -903,11 +1056,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayTwentythreeComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayTwentythreeInv,
+        TotalItemSold: dayTwentythreeItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -922,8 +1075,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-24T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-24T00:00:00`,
+        TransactionAmount: dayTwentyfourAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -934,11 +1091,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayTwentyfourComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayTwentyfourInv,
+        TotalItemSold: dayTwentyfourItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -953,8 +1110,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-25T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-25T00:00:00`,
+        TransactionAmount: dayTwentyfiveAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -965,11 +1126,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayTwentyfiveComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayTwentyfiveInv,
+        TotalItemSold: dayTwentyfiveItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -984,8 +1145,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-26T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-26T00:00:00`,
+        TransactionAmount: dayTwentysixAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -996,11 +1161,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayTwentysixComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayTwentysixInv,
+        TotalItemSold: dayTwentysixItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -1015,8 +1180,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-27T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-27T00:00:00`,
+        TransactionAmount: dayTwentysevenAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -1027,11 +1196,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayTwentysevenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayTwentysevenInv,
+        TotalItemSold: dayTwentysevenItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -1046,8 +1215,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-28T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-28T00:00:00`,
+        TransactionAmount: dayTwentyeightAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -1058,11 +1231,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayTwentyeightComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayTwentyeightInv,
+        TotalItemSold: dayTwentyeightItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -1077,8 +1250,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-29T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-29T00:00:00`,
+        TransactionAmount: dayTwentynineAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -1089,11 +1266,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayTwentynineComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayTwentynineInv,
+        TotalItemSold: dayTwentynineItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -1108,8 +1285,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-30T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-30T00:00:00`,
+        TransactionAmount: dayThirtyAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -1120,11 +1301,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayThirtyComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayThirtyInv,
+        TotalItemSold: dayThirtyItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -1139,8 +1320,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-31T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-31T00:00:00`,
+        TransactionAmount: dayThirtyoneAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -1151,11 +1336,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayThirtyoneComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayThirtyoneInv,
+        TotalItemSold: dayThirtyoneItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -1171,9 +1356,7 @@ const Form = ({ token }) => {
     PropertyName: null,
     LeaseUnitCode: null,
     LeaseBrandName: null,
-
     TransactionYear: null,
-
     TransactionDate_Str: null,
     SaleTransactionStatus_Str: null,
     Day: 0,
@@ -1186,14 +1369,17 @@ const Form = ({ token }) => {
     SalesType: null,
     TransactionTypeStr: null,
     SaleTransactionSourceStr: null,
-
-    GrandTotalTransactionAmount: 0,
+    GrandTotalTransactionAmount: grandTotalAmount,
     GrandTotalTransactionAmount_Str: null,
-    GrandTotalTotalInvoices: 0,
+    GrandTotalTotalInvoices: grandTotalInvoices,
     GrandTotalTotalInvoices_Str: null,
-    GrandTotalTotalItemSold: 0,
+    GrandTotalTotalItemSold: grandTotalSoldItemms,
     GrandTotalTotalItemSold_Str: null,
   };
+
+  useEffect(() => {
+    console.log(body);
+  }, [dayOneAmount, dayOneComment, dayOneInv, dayOneItemSold]);
 
   return (
     <>
