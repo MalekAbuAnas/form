@@ -111,9 +111,39 @@ const Form = ({ token }) => {
   const [dayThirtyAmount, setDayThirtyAmount] = useState(0);
   const [dayThirtyoneAmount, setDayThirtyoneAmount] = useState(0);
 
-  useEffect(() => {
-    console.log(daysInMonth);
-  });
+  // DAYS COMMENTS
+
+  const [dayOneComment, setDayOneComment] = useState("");
+  const [dayTwoComment, setDayTwoComment] = useState("");
+  const [dayThreeComment, setDayThreeComment] = useState("");
+  const [dayFourComment, setDayFourComment] = useState("");
+  const [dayFiveComment, setDayFiveComment] = useState("");
+  const [daySixComment, setDaySixComment] = useState("");
+  const [daySevenComment, setDaySevenComment] = useState("");
+  const [dayEightComment, setDayEightComment] = useState("");
+  const [dayNineComment, setDayNineComment] = useState("");
+  const [dayTenComment, setDayTenComment] = useState("");
+  const [dayElevenComment, setDayElevenComment] = useState("");
+  const [dayTwelveComment, setDayTwelveComment] = useState("");
+  const [dayThirteenComment, setDayThirteenComment] = useState("");
+  const [dayFourteenComment, setDayFourteenComment] = useState("");
+  const [dayFifteenComment, setDayFifteenComment] = useState("");
+  const [daySixteenComment, setDaySixteenComment] = useState("");
+  const [daySeventeenComment, setDaySeventeenComment] = useState("");
+  const [dayEighteenComment, setDayEighteenComment] = useState("");
+  const [dayNineteenComment, setDayNineteenComment] = useState("");
+  const [dayTwentyComment, setDayTwentyComment] = useState("");
+  const [dayTwentyoneComment, setDayTwentyoneComment] = useState("");
+  const [dayTwentytwoComment, setDayTwentytwoComment] = useState("");
+  const [dayTwentythreeComment, setDayTwentythreeComment] = useState("");
+  const [dayTwentyfourComment, setDayTwentyfourComment] = useState("");
+  const [dayTwentyfiveComment, setDayTwentyfiveComment] = useState("");
+  const [dayTwentysixComment, setDayTwentysixComment] = useState("");
+  const [dayTwentysevenComment, setDayTwentysevenComment] = useState("");
+  const [dayTwentyeightComment, setDayTwentyeightComment] = useState("");
+  const [dayTwentynineComment, setDayTwentynineComment] = useState("");
+  const [dayThirtyComment, setDayThirtyComment] = useState("");
+  const [dayThirtyoneComment, setDayThirtyoneComment] = useState("");
 
   const formattedDate =
     currentDate.toISOString().split("T")[0] +
@@ -124,11 +154,21 @@ const Form = ({ token }) => {
     ":" +
     ("0" + currentDate.getSeconds()).slice(-2);
 
+  useEffect(() => {
+    console.log(
+      `${currentYear}-${
+        String(currentMonth + 1).length === 1
+          ? `0${currentMonth + 1}`
+          : currentMonth
+      }-01T00:00:00`
+    );
+  });
+
   const body = {
     LeaseCode: "t0001235",
     SalesTypeCode: "fnb",
     PropertyCode: "mgb",
-    TransactionDate: "2022-01-01T00:00:00",
+    TransactionDate: formattedDate,
     TransactionSource: 1,
     RequestStatus: 2,
     SalesRequestComments: "Daily sales submitted for  approval 'TEST'",
@@ -143,12 +183,16 @@ const Form = ({ token }) => {
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
         TransactionType: 1,
-        TransactionDate: "2022-01-01T00:00:00",
-        TotalInvoices: 1,
-        TotalItemSold: 3,
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-01T00:00:00`,
+        TotalInvoices: dayOneInv,
+        TotalItemSold: dayOneItemSold,
+        TransactionAmount: dayOneAmount,
 
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayOneComment,
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
@@ -172,8 +216,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-02T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-02T00:00:00`,
+        TransactionAmount: dayTwoAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -184,42 +232,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayTwoComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
-        PropertyName: null,
-        ModifiedBy: 0,
-        ModifiedByName: null,
-        TransactionAmount_Str: null,
-        TotalInvoices_Str: null,
-        TotalItemSold_Str: null,
-        SubmissionDate: "0001-01-01T00:00:00",
-        SubmissionDate_Str: null,
-        SalesTypeCode: "fnb",
-      },
-
-      {
-        TransactionId: 0,
-        TransactionNumber: null,
-        TransactionDate: "2022-01-03T00:00:00",
-        TransactionAmount: 0,
-        LeaseCode: "t0001235",
-        PropertyCode: "mgb",
-        Year: 0,
-        TransactionType: 1,
-        CreatedUserId: 0,
-        CreatedByEmail: null,
-        CustomerCode: null,
-        FileAttachmentBase64: null,
-        FileAttachmentTitle: null,
-        FileAttachmentContentType: null,
-        SaleTransactionComments: "",
-        SaleTransactionStatus: 2,
-        SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayTwoInv,
+        TotalItemSold: dayTwoItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -234,8 +251,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-04T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-03T00:00:00`,
+        TransactionAmount: dayThreeAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -246,11 +267,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayThreeComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayThreeInv,
+        TotalItemSold: dayThreeItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -265,8 +286,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-05T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-04T00:00:00`,
+        TransactionAmount: dayFourAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -277,11 +302,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayFourComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayFourInv,
+        TotalItemSold: dayFourItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -296,8 +321,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-06T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-05T00:00:00`,
+        TransactionAmount: dayFiveAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -308,11 +337,11 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: dayFiveComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: dayFiveInv,
+        TotalItemSold: dayFiveItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -327,8 +356,12 @@ const Form = ({ token }) => {
       {
         TransactionId: 0,
         TransactionNumber: null,
-        TransactionDate: "2022-01-07T00:00:00",
-        TransactionAmount: 0,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-06T00:00:00`,
+        TransactionAmount: daySixAmount,
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -339,11 +372,46 @@ const Form = ({ token }) => {
         FileAttachmentBase64: null,
         FileAttachmentTitle: null,
         FileAttachmentContentType: null,
-        SaleTransactionComments: "",
+        SaleTransactionComments: daySixComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: 1,
-        TotalItemSold: 3,
+        TotalInvoices: daySixInv,
+        TotalItemSold: daySixItemSold,
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-07T00:00:00`,
+        TransactionAmount: daySevenAmount,
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: daySevenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: daySevenInv,
+        TotalItemSold: daySevenItemSold,
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -1166,6 +1234,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayOneComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1205,6 +1276,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayTwoComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1244,6 +1318,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayThreeComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1283,6 +1360,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayFourComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1322,6 +1402,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayFiveComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1361,6 +1444,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDaySixComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1400,6 +1486,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDaySevenComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1439,6 +1528,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayEightComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1478,6 +1570,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayNineComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1517,6 +1612,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayTenComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1556,6 +1654,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayElevenComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1595,6 +1696,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayTwelveComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1634,6 +1738,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayThirteenComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1673,6 +1780,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayFourteenComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1712,6 +1822,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayFifteenComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1751,6 +1864,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDaySixteenComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1790,6 +1906,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDaySeventeenComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1829,6 +1948,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayEighteenComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1868,6 +1990,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayNineteenComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1907,6 +2032,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayTwentyComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1946,6 +2074,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayTwentyoneComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -1985,6 +2116,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayTwentytwoComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -2024,6 +2158,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayTwentythreeComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -2063,6 +2200,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayTwentyfourComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -2102,6 +2242,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayTwentyfiveComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -2141,6 +2284,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayTwentysixComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -2180,6 +2326,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayTwentysevenComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -2219,6 +2368,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayTwentyeightComment(e.target.value);
+          }}
         />
       </div>
       <div className="w-4/5 flex flex-col items-start text-left">
@@ -2258,6 +2410,9 @@ const Form = ({ token }) => {
           type="text"
           className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
           placeholder="Any Comments ... (optional)"
+          onChange={(e) => {
+            setDayTwentynineComment(e.target.value);
+          }}
         />
       </div>
       {daysInMonth === 30 ? (
@@ -2298,6 +2453,9 @@ const Form = ({ token }) => {
             type="text"
             className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Any Comments ... (optional)"
+            onChange={(e) => {
+              setDayThirtyComment(e.target.value);
+            }}
           />
         </div>
       ) : daysInMonth === 31 ? (
@@ -2305,6 +2463,48 @@ const Form = ({ token }) => {
           <div className="w-4/5 flex flex-col items-start text-left">
             <h3 className="self-left text-[#fff] text-xl mb-3 tracking-widest">
               30 - {currentMonth + 1} - {currentYear}
+            </h3>
+            <div className="flex w-full items-start space-x-10 pb-5">
+              <input
+                type="number"
+                className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
+                placeholder="Number of Sold Items"
+                onChange={(e) => {
+                  setDayThirtyItemSold(e.target.value);
+                }}
+                required
+              />
+              <input
+                type="number"
+                className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
+                placeholder="Number of Invoices"
+                onChange={(e) => {
+                  setDayThirtyInv(e.target.value);
+                }}
+                required
+              />
+              <input
+                type="number"
+                className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
+                placeholder="Transaction Amount"
+                onChange={(e) => {
+                  setDayThirtyAmount(e.target.value);
+                }}
+                required
+              />
+            </div>
+            <input
+              type="text"
+              className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
+              placeholder="Any Comments ... (optional)"
+              onChange={(e) => {
+                setDayThirtyComment(e.target.value);
+              }}
+            />
+          </div>
+          <div className="w-4/5 flex flex-col items-start text-left">
+            <h3 className="self-left text-[#fff] text-xl mb-3 tracking-widest">
+              31 - {currentMonth + 1} - {currentYear}
             </h3>
             <div className="flex w-full items-start space-x-10 pb-5">
               <input
@@ -2339,45 +2539,9 @@ const Form = ({ token }) => {
               type="text"
               className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
               placeholder="Any Comments ... (optional)"
-            />
-          </div>
-          <div className="w-4/5 flex flex-col items-start text-left">
-            <h3 className="self-left text-[#fff] text-xl mb-3 tracking-widest">
-              31 - {currentMonth + 1} - {currentYear}
-            </h3>
-            <div className="flex w-full items-start space-x-10 pb-5">
-              <input
-                type="number"
-                className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
-                placeholder="Number of Sold Items"
-                onChange={(e) => {
-                  setDayOneItemSold(e.target.value);
-                }}
-                required
-              />
-              <input
-                type="number"
-                className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
-                placeholder="Number of Invoices"
-                onChange={(e) => {
-                  setDayOneInv(e.target.value);
-                }}
-                required
-              />
-              <input
-                type="number"
-                className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
-                placeholder="Transaction Amount"
-                onChange={(e) => {
-                  setDayOneAmount(e.target.value);
-                }}
-                required
-              />
-            </div>
-            <input
-              type="text"
-              className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
-              placeholder="Any Comments ... (optional)"
+              onChange={(e) => {
+                setDayThirtyoneComment(e.target.value);
+              }}
             />
           </div>
         </>
