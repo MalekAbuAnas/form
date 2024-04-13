@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Navbar, Secondtransition, ThirtyDays } from "./index";
+import { Form, Navbar, Secondtransition } from "./index";
 import axios from "axios";
 
 export default function Dailyform() {
@@ -15,7 +15,7 @@ export default function Dailyform() {
   }, []);
 
   return (
-    <div className="daily-form w-full min-h-[100vh] relative">
+    <div className="daily-form w-full min-h-[100vh] relative py-10">
       <Navbar />
       <div className="page-content w-full flex-col items-center justify-center text-center">
         <h1 className="text-4xl text-[#fff] font-yeseva py-10">
@@ -29,7 +29,8 @@ export default function Dailyform() {
           className="flex flex-col space-y-10 w-full items-center justify-center"
         >
           <div className="w-full flex flex-col space-y-8 items-center justify-center">
-            <ThirtyDays />
+            {/* <ThirtyDays token={token} /> */}
+            <Form token={token} />
           </div>
         </form>
       </div>

@@ -7,3 +7,4 @@ export { default as Dailyform } from "./Dailyform";
 export { default as Monthlyform } from "./Monthlyform";
 export { default as Secondtransition } from "./Secondtransition";
 export { default as ThirtyDays } from "./ThirtyDays";
+export { default as Form } from "./Form";
