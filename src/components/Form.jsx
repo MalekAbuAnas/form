@@ -145,105 +145,106 @@ const Form = ({ token }) => {
   const [dayThirtyComment, setDayThirtyComment] = useState("");
   const [dayThirtyoneComment, setDayThirtyoneComment] = useState("");
 
-  const grandTotalAmount = Number(
-    dayOneAmount +
-      dayTwoAmount +
-      dayThreeAmount +
-      dayFourAmount +
-      dayFiveAmount +
-      daySixAmount +
-      daySevenAmount +
-      dayEightAmount +
-      dayNineAmount +
-      dayTenAmount +
-      dayElevenAmount +
-      dayTwelveAmount +
-      dayThirteenAmount +
-      dayFourteenAmount +
-      dayFifteenAmount +
-      daySixteenAmount +
-      daySeventeenAmount +
-      dayEighteenAmount +
-      dayNineteenAmount +
-      dayTwentyAmount +
-      dayTwentyoneAmount +
-      dayTwentytwoAmount +
-      dayTwentythreeAmount +
-      dayTwentyfourAmount +
-      dayTwentyfiveAmount +
-      dayTwentysixAmount +
-      dayTwentysevenAmount +
-      dayTwentyeightAmount +
-      dayTwentynineAmount +
-      dayThirtyAmount +
-      dayThirtyoneAmount
-  );
+  const grandTotalAmount =
+    Number(dayOneAmount) +
+    Number(dayTwoAmount) +
+    Number(dayThreeAmount) +
+    Number(dayFourAmount) +
+    Number(dayFiveAmount) +
+    Number(daySixAmount) +
+    Number(daySevenAmount) +
+    Number(dayEightAmount) +
+    Number(dayNineAmount) +
+    Number(dayTenAmount) +
+    Number(dayElevenAmount) +
+    Number(dayTwelveAmount) +
+    Number(dayThirteenAmount) +
+    Number(dayFourteenAmount) +
+    Number(dayFifteenAmount) +
+    Number(daySixteenAmount) +
+    Number(daySeventeenAmount) +
+    Number(dayEighteenAmount) +
+    Number(dayNineteenAmount) +
+    Number(dayTwentyAmount) +
+    Number(dayTwentyoneAmount) +
+    Number(dayTwentytwoAmount) +
+    Number(dayTwentythreeAmount) +
+    Number(dayTwentyfourAmount) +
+    Number(dayTwentyfiveAmount) +
+    Number(dayTwentysixAmount) +
+    Number(dayTwentysevenAmount) +
+    Number(dayTwentyeightAmount) +
+    Number(dayTwentynineAmount) +
+    Number(dayThirtyAmount) +
+    Number(dayThirtyoneAmount);
 
   const grandTotalInvoices =
-    dayOneInv +
-    dayTwoInv +
-    dayThreeInv +
-    dayFourInv +
-    dayFiveInv +
-    daySixInv +
-    daySevenInv +
-    dayEightInv +
-    dayNineInv +
-    dayTenInv +
-    dayElevenInv +
-    dayTwelveInv +
-    dayThirteenInv +
-    dayFourteenInv +
-    dayFifteenInv +
-    daySixteenInv +
-    daySeventeenInv +
-    dayEighteenInv +
-    dayNineteenInv +
-    dayTwentyInv +
-    dayTwentyoneInv +
-    dayTwentytwoInv +
-    dayTwentythreeInv +
-    dayTwentyfourInv +
-    dayTwentyfiveInv +
-    dayTwentysixInv +
-    dayTwentysevenInv +
-    dayTwentyeightInv +
-    dayTwentynineInv +
-    dayThirtyInv +
-    dayThirtyoneInv;
+    Number(dayOneInv) +
+    Number(dayTwoInv) +
+    Number(dayThreeInv) +
+    Number(dayFourInv) +
+    Number(dayFiveInv) +
+    Number(daySixInv) +
+    Number(daySevenInv) +
+    Number(dayEightInv) +
+    Number(dayNineInv) +
+    Number(dayTenInv) +
+    Number(dayElevenInv) +
+    Number(dayTwelveInv) +
+    Number(dayThirteenInv) +
+    Number(dayFourteenInv) +
+    Number(dayFifteenInv) +
+    Number(daySixteenInv) +
+    Number(daySeventeenInv) +
+    Number(dayEighteenInv) +
+    Number(dayNineteenInv) +
+    Number(dayTwentyInv) +
+    Number(dayTwentyoneInv) +
+    Number(dayTwentytwoInv) +
+    Number(dayTwentythreeInv) +
+    Number(dayTwentyfourInv) +
+    Number(dayTwentyfiveInv) +
+    Number(dayTwentysixInv) +
+    Number(dayTwentysevenInv) +
+    Number(dayTwentyeightInv) +
+    Number(dayTwentynineInv) +
+    Number(dayThirtyInv) +
+    Number(dayThirtyoneInv);
 
   const grandTotalSoldItemms =
-    dayOneItemSold +
-    dayTwoItemSold +
-    dayThreeItemSold +
-    dayFourItemSold +
-    dayFiveItemSold +
-    daySixItemSold +
-    daySevenItemSold +
-    dayEightItemSold +
-    dayNineItemSold +
-    dayTenItemSold +
-    dayElevenItemSold +
-    dayTwelveItemSold +
-    dayThirteenItemSold +
-    dayFourteenItemSold +
-    dayFifteenItemSold +
-    daySixteenItemSold +
-    daySeventeenItemSold +
-    dayEighteenItemSold +
-    dayNineteenItemSold +
-    dayTwentyItemSold +
-    dayTwentyoneItemSold +
-    dayTwentytwoItemSold +
-    dayTwentythreeItemSold +
-    dayTwentyfourItemSold +
-    dayTwentyfiveItemSold +
-    dayTwentysixItemSold +
-    dayTwentysevenItemSold +
-    dayTwentyeightItemSold +
-    dayTwentynineItemSold +
-    dayThirtyItemSold +
-    dayThirtyoneItemSold;
+    Number(dayOneItemSold) +
+    Number(dayTwoItemSold) +
+    Number(dayThreeItemSold) +
+    Number(dayFourItemSold) +
+    Number(dayFiveItemSold) +
+    Number(daySixItemSold) +
+    Number(daySevenItemSold) +
+    Number(dayEightItemSold) +
+    Number(dayNineItemSold) +
+    Number(dayTenItemSold) +
+    Number(dayElevenItemSold) +
+    Number(dayTwelveItemSold) +
+    Number(dayThirteenItemSold) +
+    Number(dayFourteenItemSold) +
+    Number(dayFifteenItemSold) +
+    Number(daySixteenItemSold) +
+    Number(daySeventeenItemSold) +
+    Number(dayEighteenItemSold) +
+    Number(dayNineteenItemSold) +
+    Number(dayTwentyItemSold) +
+    Number(dayTwentyoneItemSold) +
+    Number(dayTwentytwoItemSold) +
+    Number(dayTwentythreeItemSold) +
+    Number(dayTwentyfourItemSold) +
+    Number(dayTwentyfiveItemSold) +
+    Number(dayTwentysixItemSold) +
+    Number(dayTwentysevenItemSold) +
+    Number(dayTwentyeightItemSold) +
+    Number(dayTwentynineItemSold) +
+    Number(dayThirtyItemSold) +
+    Number(dayThirtyoneItemSold);
+
+  // const GrandTotalTotalItemSold_Str = grandTotalSoldItemmsDecimal;
 
   const formattedDate =
     currentDate.toISOString().split("T")[0] +
@@ -311,7 +312,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-02T00:00:00`,
-        TransactionAmount: dayTwoAmount,
+        TransactionAmount: Number(dayTwoAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -325,8 +326,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayTwoComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayTwoInv,
-        TotalItemSold: dayTwoItemSold,
+        TotalInvoices: Number(dayTwoInv),
+        TotalItemSold: Number(dayTwoItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -346,7 +347,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-03T00:00:00`,
-        TransactionAmount: dayThreeAmount,
+        TransactionAmount: Number(dayThreeAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -360,8 +361,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayThreeComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayThreeInv,
-        TotalItemSold: dayThreeItemSold,
+        TotalInvoices: Number(dayThreeInv),
+        TotalItemSold: Number(dayThreeItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -381,7 +382,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-04T00:00:00`,
-        TransactionAmount: dayFourAmount,
+        TransactionAmount: Number(dayFourAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -395,8 +396,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayFourComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayFourInv,
-        TotalItemSold: dayFourItemSold,
+        TotalInvoices: Number(dayFourInv),
+        TotalItemSold: Number(dayFourItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -416,7 +417,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-05T00:00:00`,
-        TransactionAmount: dayFiveAmount,
+        TransactionAmount: Number(dayFiveAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -430,8 +431,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayFiveComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayFiveInv,
-        TotalItemSold: dayFiveItemSold,
+        TotalInvoices: Number(dayFiveInv),
+        TotalItemSold: Number(dayFiveItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -451,7 +452,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-06T00:00:00`,
-        TransactionAmount: daySixAmount,
+        TransactionAmount: Number(daySixAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -465,8 +466,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: daySixComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: daySixInv,
-        TotalItemSold: daySixItemSold,
+        TotalInvoices: Number(daySixInv),
+        TotalItemSold: Number(daySixItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -486,7 +487,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-07T00:00:00`,
-        TransactionAmount: daySevenAmount,
+        TransactionAmount: Number(daySevenAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -500,8 +501,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: daySevenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: daySevenInv,
-        TotalItemSold: daySevenItemSold,
+        TotalInvoices: Number(daySevenInv),
+        TotalItemSold: Number(daySevenItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -521,7 +522,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-08T00:00:00`,
-        TransactionAmount: dayEightAmount,
+        TransactionAmount: Number(dayEightAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -535,8 +536,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayEightComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayEightInv,
-        TotalItemSold: dayEightItemSold,
+        TotalInvoices: Number(dayEightInv),
+        TotalItemSold: Number(dayEightItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -556,7 +557,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-09T00:00:00`,
-        TransactionAmount: dayNineAmount,
+        TransactionAmount: Number(dayNineAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -570,8 +571,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayNineComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayNineInv,
-        TotalItemSold: dayNineItemSold,
+        TotalInvoices: Number(dayNineInv),
+        TotalItemSold: Number(dayNineItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -591,7 +592,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-10T00:00:00`,
-        TransactionAmount: dayTenAmount,
+        TransactionAmount: Number(dayTenAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -605,8 +606,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayTenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayTenInv,
-        TotalItemSold: dayTenItemSold,
+        TotalInvoices: Number(dayTenInv),
+        TotalItemSold: Number(dayTenItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -626,7 +627,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-11T00:00:00`,
-        TransactionAmount: dayElevenAmount,
+        TransactionAmount: Number(dayElevenAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -640,8 +641,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayElevenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayElevenInv,
-        TotalItemSold: dayElevenItemSold,
+        TotalInvoices: Number(dayElevenInv),
+        TotalItemSold: Number(dayElevenItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -661,7 +662,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-12T00:00:00`,
-        TransactionAmount: dayTwelveAmount,
+        TransactionAmount: Number(dayTwelveAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -675,8 +676,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayTwelveComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayTwelveInv,
-        TotalItemSold: dayTwelveItemSold,
+        TotalInvoices: Number(dayTwelveInv),
+        TotalItemSold: Number(dayTwelveItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -696,7 +697,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-13T00:00:00`,
-        TransactionAmount: dayThirteenAmount,
+        TransactionAmount: Number(dayThirteenAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -710,8 +711,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayThirteenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayThirteenInv,
-        TotalItemSold: dayThirteenItemSold,
+        TotalInvoices: Number(dayThirteenInv),
+        TotalItemSold: Number(dayThirteenItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -731,7 +732,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-14T00:00:00`,
-        TransactionAmount: dayFourteenAmount,
+        TransactionAmount: Number(dayFourteenAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -745,8 +746,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayFourteenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayFourteenInv,
-        TotalItemSold: dayFourteenItemSold,
+        TotalInvoices: Number(dayFourteenInv),
+        TotalItemSold: Number(dayFourteenItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -766,7 +767,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-15T00:00:00`,
-        TransactionAmount: dayFifteenAmount,
+        TransactionAmount: Number(dayFifteenAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -780,8 +781,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayFifteenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayFifteenInv,
-        TotalItemSold: dayFifteenItemSold,
+        TotalInvoices: Number(dayFifteenInv),
+        TotalItemSold: Number(dayFifteenItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -801,7 +802,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-16T00:00:00`,
-        TransactionAmount: daySixteenAmount,
+        TransactionAmount: Number(daySixteenAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -815,8 +816,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: daySixteenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: daySixteenInv,
-        TotalItemSold: daySixteenItemSold,
+        TotalInvoices: Number(daySixteenInv),
+        TotalItemSold: Number(daySixteenItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -836,7 +837,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-17T00:00:00`,
-        TransactionAmount: daySeventeenAmount,
+        TransactionAmount: Number(daySeventeenAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -850,8 +851,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: daySeventeenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: daySeventeenInv,
-        TotalItemSold: daySeventeenItemSold,
+        TotalInvoices: Number(daySeventeenInv),
+        TotalItemSold: Number(daySeventeenItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -871,7 +872,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-18T00:00:00`,
-        TransactionAmount: dayEighteenAmount,
+        TransactionAmount: Number(dayEighteenAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -885,8 +886,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayEighteenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayEighteenInv,
-        TotalItemSold: dayEighteenItemSold,
+        TotalInvoices: Number(dayEighteenInv),
+        TotalItemSold: Number(dayEighteenItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -906,7 +907,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-19T00:00:00`,
-        TransactionAmount: dayNineteenAmount,
+        TransactionAmount: Number(dayNineteenAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -920,8 +921,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayNineteenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayNineteenInv,
-        TotalItemSold: dayNineteenItemSold,
+        TotalInvoices: Number(dayNineteenInv),
+        TotalItemSold: Number(dayNineteenItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -941,7 +942,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-20T00:00:00`,
-        TransactionAmount: dayTwentyAmount,
+        TransactionAmount: Number(dayTwentyAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -955,8 +956,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayTwentyComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayTwentyInv,
-        TotalItemSold: dayTwentyItemSold,
+        TotalInvoices: Number(dayTwentyInv),
+        TotalItemSold: Number(dayTwentyItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -976,7 +977,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-21T00:00:00`,
-        TransactionAmount: dayTwentyoneAmount,
+        TransactionAmount: Number(dayTwentyoneAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -990,8 +991,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayTwentyoneComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayTwentyoneInv,
-        TotalItemSold: dayTwentyoneItemSold,
+        TotalInvoices: Number(dayTwentyoneInv),
+        TotalItemSold: Number(dayTwentyoneItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -1011,7 +1012,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-22T00:00:00`,
-        TransactionAmount: dayTwentytwoAmount,
+        TransactionAmount: Number(dayTwentytwoAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -1025,8 +1026,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayTwentytwoComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayTwentytwoInv,
-        TotalItemSold: dayTwentytwoItemSold,
+        TotalInvoices: Number(dayTwentytwoInv),
+        TotalItemSold: Number(dayTwentytwoItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -1046,7 +1047,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-23T00:00:00`,
-        TransactionAmount: dayTwentythreeAmount,
+        TransactionAmount: Number(dayTwentythreeAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -1060,8 +1061,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayTwentythreeComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayTwentythreeInv,
-        TotalItemSold: dayTwentythreeItemSold,
+        TotalInvoices: Number(dayTwentythreeInv),
+        TotalItemSold: Number(dayTwentythreeItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -1081,7 +1082,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-24T00:00:00`,
-        TransactionAmount: dayTwentyfourAmount,
+        TransactionAmount: Number(dayTwentyfourAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -1095,8 +1096,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayTwentyfourComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayTwentyfourInv,
-        TotalItemSold: dayTwentyfourItemSold,
+        TotalInvoices: Number(dayTwentyfourInv),
+        TotalItemSold: Number(dayTwentyfourItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -1116,7 +1117,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-25T00:00:00`,
-        TransactionAmount: dayTwentyfiveAmount,
+        TransactionAmount: Number(dayTwentyfiveAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -1130,8 +1131,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayTwentyfiveComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayTwentyfiveInv,
-        TotalItemSold: dayTwentyfiveItemSold,
+        TotalInvoices: Number(dayTwentyfiveInv),
+        TotalItemSold: Number(dayTwentyfiveItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -1151,7 +1152,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-26T00:00:00`,
-        TransactionAmount: dayTwentysixAmount,
+        TransactionAmount: Number(dayTwentysixAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -1165,8 +1166,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayTwentysixComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayTwentysixInv,
-        TotalItemSold: dayTwentysixItemSold,
+        TotalInvoices: Number(dayTwentysixInv),
+        TotalItemSold: Number(dayTwentysixItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -1186,7 +1187,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-27T00:00:00`,
-        TransactionAmount: dayTwentysevenAmount,
+        TransactionAmount: Number(dayTwentysevenAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -1200,8 +1201,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayTwentysevenComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayTwentysevenInv,
-        TotalItemSold: dayTwentysevenItemSold,
+        TotalInvoices: Number(dayTwentysevenInv),
+        TotalItemSold: Number(dayTwentysevenItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -1221,7 +1222,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-28T00:00:00`,
-        TransactionAmount: dayTwentyeightAmount,
+        TransactionAmount: Number(dayTwentyeightAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -1235,8 +1236,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayTwentyeightComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayTwentyeightInv,
-        TotalItemSold: dayTwentyeightItemSold,
+        TotalInvoices: Number(dayTwentyeightInv),
+        TotalItemSold: Number(dayTwentyeightItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -1256,7 +1257,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-29T00:00:00`,
-        TransactionAmount: dayTwentynineAmount,
+        TransactionAmount: Number(dayTwentynineAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -1270,8 +1271,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayTwentynineComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayTwentynineInv,
-        TotalItemSold: dayTwentynineItemSold,
+        TotalInvoices: Number(dayTwentynineInv),
+        TotalItemSold: Number(dayTwentynineItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -1291,7 +1292,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-30T00:00:00`,
-        TransactionAmount: dayThirtyAmount,
+        TransactionAmount: Number(dayThirtyAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -1305,8 +1306,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayThirtyComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayThirtyInv,
-        TotalItemSold: dayThirtyItemSold,
+        TotalInvoices: Number(dayThirtyInv),
+        TotalItemSold: Number(dayThirtyItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
@@ -1326,7 +1327,7 @@ const Form = ({ token }) => {
             ? `0${currentMonth + 1}`
             : currentMonth
         }-31T00:00:00`,
-        TransactionAmount: dayThirtyoneAmount,
+        TransactionAmount: Number(dayThirtyoneAmount),
         LeaseCode: "t0001235",
         PropertyCode: "mgb",
         Year: 0,
@@ -1340,8 +1341,8 @@ const Form = ({ token }) => {
         SaleTransactionComments: dayThirtyoneComment,
         SaleTransactionStatus: 2,
         SaleTransactionSource: 1,
-        TotalInvoices: dayThirtyoneInv,
-        TotalItemSold: dayThirtyoneItemSold,
+        TotalInvoices: Number(dayThirtyoneInv),
+        TotalItemSold: Number(dayThirtyoneItemSold),
         PropertyName: null,
         ModifiedBy: 0,
         ModifiedByName: null,
