@@ -10,6 +10,9 @@ const Form = ({ token }) => {
     0
   ).getDate();
 
+  //MAIN COMMENT
+  const [mainComment, setMainComment] = useState("");
+
   // TOTAL INVOICES BY DAYS
   const [dayOneInv, setDayOneInv] = useState(0);
   const [dayTwoInv, setDayTwoInv] = useState(0);
@@ -262,7 +265,7 @@ const Form = ({ token }) => {
     TransactionDate: formattedDate,
     TransactionSource: 1,
     RequestStatus: 2,
-    SalesRequestComments: "Daily sales submitted for  approval 'TEST'",
+    SalesRequestComments: mainComment,
     TransactionType: 1,
     SalesRequestId: 0,
 
@@ -1386,6 +1389,15 @@ const Form = ({ token }) => {
   return (
     <>
       <div className="w-4/5 flex flex-col items-start text-left">
+        <input
+          type="text"
+          className="w-full py-5 mb-40 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
+          placeholder="Enter comment ... (optional)"
+          onChange={(e) => {
+            setMainComment(e.target.value);
+          }}
+          required
+        />
         <h3 className="self-left text-[#fff] text-xl mb-3 tracking-widest">
           1 - {currentMonth + 1} - {currentYear}
         </h3>
