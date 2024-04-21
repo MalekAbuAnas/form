@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import axios from "axios";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Form = ({ token }) => {
   const currentDate = new Date();
@@ -12,6 +14,7 @@ const Form = ({ token }) => {
 
   //MAIN COMMENT
   const [mainComment, setMainComment] = useState("");
+  const [data, setData] = useState({});
 
   // TOTAL INVOICES BY DAYS
   const [dayOneInv, setDayOneInv] = useState(0);
@@ -258,7 +261,7 @@ const Form = ({ token }) => {
     ":" +
     ("0" + currentDate.getSeconds()).slice(-2);
 
-  const body = {
+  const body31 = {
     LeaseCode: "t0001235",
     SalesTypeCode: "fnb",
     PropertyCode: "mgb",
@@ -1374,17 +1377,3272 @@ const Form = ({ token }) => {
     SalesType: null,
     TransactionTypeStr: null,
     SaleTransactionSourceStr: null,
-    GrandTotalTransactionAmount: grandTotalAmount,
+    GrandTotalTransactionAmount: 0,
     GrandTotalTransactionAmount_Str: null,
-    GrandTotalTotalInvoices: grandTotalInvoices,
+    GrandTotalTotalInvoices: 0,
     GrandTotalTotalInvoices_Str: null,
-    GrandTotalTotalItemSold: grandTotalSoldItemms,
+    GrandTotalTotalItemSold: 0,
+    GrandTotalTotalItemSold_Str: null,
+  };
+  const body30 = {
+    LeaseCode: "t0001235",
+    SalesTypeCode: "fnb",
+    PropertyCode: "mgb",
+    TransactionDate: formattedDate,
+    TransactionSource: 1,
+    RequestStatus: 2,
+    SalesRequestComments: mainComment,
+    TransactionType: 1,
+    SalesRequestId: 0,
+
+    BulkSalesModels: [
+      {
+        LeaseCode: "t0001235",
+        SalesTypeCode: "fnb",
+        PropertyCode: "mgb",
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TransactionType: 1,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-01T00:00:00`,
+        TotalInvoices: Number(dayOneInv),
+        TotalItemSold: Number(dayOneItemSold),
+        TransactionAmount: Number(dayOneAmount),
+
+        SaleTransactionComments: dayOneComment,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+
+        TransactionId: 0,
+        TransactionNumber: null,
+        Year: 0,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-02T00:00:00`,
+        TransactionAmount: Number(dayTwoAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwoComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwoInv),
+        TotalItemSold: Number(dayTwoItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-03T00:00:00`,
+        TransactionAmount: Number(dayThreeAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayThreeComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayThreeInv),
+        TotalItemSold: Number(dayThreeItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-04T00:00:00`,
+        TransactionAmount: Number(dayFourAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayFourComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayFourInv),
+        TotalItemSold: Number(dayFourItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-05T00:00:00`,
+        TransactionAmount: Number(dayFiveAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayFiveComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayFiveInv),
+        TotalItemSold: Number(dayFiveItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-06T00:00:00`,
+        TransactionAmount: Number(daySixAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: daySixComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(daySixInv),
+        TotalItemSold: Number(daySixItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-07T00:00:00`,
+        TransactionAmount: Number(daySevenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: daySevenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(daySevenInv),
+        TotalItemSold: Number(daySevenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-08T00:00:00`,
+        TransactionAmount: Number(dayEightAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayEightComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayEightInv),
+        TotalItemSold: Number(dayEightItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-09T00:00:00`,
+        TransactionAmount: Number(dayNineAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayNineComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayNineInv),
+        TotalItemSold: Number(dayNineItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-10T00:00:00`,
+        TransactionAmount: Number(dayTenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTenInv),
+        TotalItemSold: Number(dayTenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-11T00:00:00`,
+        TransactionAmount: Number(dayElevenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayElevenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayElevenInv),
+        TotalItemSold: Number(dayElevenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-12T00:00:00`,
+        TransactionAmount: Number(dayTwelveAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwelveComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwelveInv),
+        TotalItemSold: Number(dayTwelveItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-13T00:00:00`,
+        TransactionAmount: Number(dayThirteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayThirteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayThirteenInv),
+        TotalItemSold: Number(dayThirteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-14T00:00:00`,
+        TransactionAmount: Number(dayFourteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayFourteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayFourteenInv),
+        TotalItemSold: Number(dayFourteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-15T00:00:00`,
+        TransactionAmount: Number(dayFifteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayFifteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayFifteenInv),
+        TotalItemSold: Number(dayFifteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-16T00:00:00`,
+        TransactionAmount: Number(daySixteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: daySixteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(daySixteenInv),
+        TotalItemSold: Number(daySixteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-17T00:00:00`,
+        TransactionAmount: Number(daySeventeenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: daySeventeenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(daySeventeenInv),
+        TotalItemSold: Number(daySeventeenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-18T00:00:00`,
+        TransactionAmount: Number(dayEighteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayEighteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayEighteenInv),
+        TotalItemSold: Number(dayEighteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-19T00:00:00`,
+        TransactionAmount: Number(dayNineteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayNineteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayNineteenInv),
+        TotalItemSold: Number(dayNineteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-20T00:00:00`,
+        TransactionAmount: Number(dayTwentyAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentyComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentyInv),
+        TotalItemSold: Number(dayTwentyItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-21T00:00:00`,
+        TransactionAmount: Number(dayTwentyoneAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentyoneComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentyoneInv),
+        TotalItemSold: Number(dayTwentyoneItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-22T00:00:00`,
+        TransactionAmount: Number(dayTwentytwoAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentytwoComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentytwoInv),
+        TotalItemSold: Number(dayTwentytwoItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-23T00:00:00`,
+        TransactionAmount: Number(dayTwentythreeAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentythreeComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentythreeInv),
+        TotalItemSold: Number(dayTwentythreeItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-24T00:00:00`,
+        TransactionAmount: Number(dayTwentyfourAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentyfourComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentyfourInv),
+        TotalItemSold: Number(dayTwentyfourItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-25T00:00:00`,
+        TransactionAmount: Number(dayTwentyfiveAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentyfiveComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentyfiveInv),
+        TotalItemSold: Number(dayTwentyfiveItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-26T00:00:00`,
+        TransactionAmount: Number(dayTwentysixAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentysixComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentysixInv),
+        TotalItemSold: Number(dayTwentysixItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-27T00:00:00`,
+        TransactionAmount: Number(dayTwentysevenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentysevenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentysevenInv),
+        TotalItemSold: Number(dayTwentysevenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-28T00:00:00`,
+        TransactionAmount: Number(dayTwentyeightAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentyeightComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentyeightInv),
+        TotalItemSold: Number(dayTwentyeightItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-29T00:00:00`,
+        TransactionAmount: Number(dayTwentynineAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentynineComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentynineInv),
+        TotalItemSold: Number(dayTwentynineItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-30T00:00:00`,
+        TransactionAmount: Number(dayThirtyAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayThirtyComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayThirtyInv),
+        TotalItemSold: Number(dayThirtyItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+    ],
+
+    PropertyName: null,
+    LeaseUnitCode: null,
+    LeaseBrandName: null,
+    TransactionYear: null,
+    TransactionDate_Str: null,
+    SaleTransactionStatus_Str: null,
+    Day: 0,
+    Month: 0,
+    Year: 0,
+    RequestNumber: null,
+    ContactCode: null,
+    CreatedUserId: 0,
+    CreatedByEmail: null,
+    SalesType: null,
+    TransactionTypeStr: null,
+    SaleTransactionSourceStr: null,
+    GrandTotalTransactionAmount: 0,
+    GrandTotalTransactionAmount_Str: null,
+    GrandTotalTotalInvoices: 0,
+    GrandTotalTotalInvoices_Str: null,
+    GrandTotalTotalItemSold: 0,
+    GrandTotalTotalItemSold_Str: null,
+  };
+  const body29 = {
+    LeaseCode: "t0001235",
+    SalesTypeCode: "fnb",
+    PropertyCode: "mgb",
+    TransactionDate: formattedDate,
+    TransactionSource: 1,
+    RequestStatus: 2,
+    SalesRequestComments: mainComment,
+    TransactionType: 1,
+    SalesRequestId: 0,
+
+    BulkSalesModels: [
+      {
+        LeaseCode: "t0001235",
+        SalesTypeCode: "fnb",
+        PropertyCode: "mgb",
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TransactionType: 1,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-01T00:00:00`,
+        TotalInvoices: Number(dayOneInv),
+        TotalItemSold: Number(dayOneItemSold),
+        TransactionAmount: Number(dayOneAmount),
+
+        SaleTransactionComments: dayOneComment,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+
+        TransactionId: 0,
+        TransactionNumber: null,
+        Year: 0,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-02T00:00:00`,
+        TransactionAmount: Number(dayTwoAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwoComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwoInv),
+        TotalItemSold: Number(dayTwoItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-03T00:00:00`,
+        TransactionAmount: Number(dayThreeAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayThreeComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayThreeInv),
+        TotalItemSold: Number(dayThreeItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-04T00:00:00`,
+        TransactionAmount: Number(dayFourAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayFourComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayFourInv),
+        TotalItemSold: Number(dayFourItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-05T00:00:00`,
+        TransactionAmount: Number(dayFiveAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayFiveComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayFiveInv),
+        TotalItemSold: Number(dayFiveItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-06T00:00:00`,
+        TransactionAmount: Number(daySixAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: daySixComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(daySixInv),
+        TotalItemSold: Number(daySixItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-07T00:00:00`,
+        TransactionAmount: Number(daySevenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: daySevenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(daySevenInv),
+        TotalItemSold: Number(daySevenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-08T00:00:00`,
+        TransactionAmount: Number(dayEightAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayEightComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayEightInv),
+        TotalItemSold: Number(dayEightItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-09T00:00:00`,
+        TransactionAmount: Number(dayNineAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayNineComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayNineInv),
+        TotalItemSold: Number(dayNineItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-10T00:00:00`,
+        TransactionAmount: Number(dayTenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTenInv),
+        TotalItemSold: Number(dayTenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-11T00:00:00`,
+        TransactionAmount: Number(dayElevenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayElevenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayElevenInv),
+        TotalItemSold: Number(dayElevenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-12T00:00:00`,
+        TransactionAmount: Number(dayTwelveAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwelveComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwelveInv),
+        TotalItemSold: Number(dayTwelveItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-13T00:00:00`,
+        TransactionAmount: Number(dayThirteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayThirteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayThirteenInv),
+        TotalItemSold: Number(dayThirteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-14T00:00:00`,
+        TransactionAmount: Number(dayFourteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayFourteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayFourteenInv),
+        TotalItemSold: Number(dayFourteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-15T00:00:00`,
+        TransactionAmount: Number(dayFifteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayFifteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayFifteenInv),
+        TotalItemSold: Number(dayFifteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-16T00:00:00`,
+        TransactionAmount: Number(daySixteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: daySixteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(daySixteenInv),
+        TotalItemSold: Number(daySixteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-17T00:00:00`,
+        TransactionAmount: Number(daySeventeenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: daySeventeenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(daySeventeenInv),
+        TotalItemSold: Number(daySeventeenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-18T00:00:00`,
+        TransactionAmount: Number(dayEighteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayEighteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayEighteenInv),
+        TotalItemSold: Number(dayEighteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-19T00:00:00`,
+        TransactionAmount: Number(dayNineteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayNineteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayNineteenInv),
+        TotalItemSold: Number(dayNineteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-20T00:00:00`,
+        TransactionAmount: Number(dayTwentyAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentyComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentyInv),
+        TotalItemSold: Number(dayTwentyItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-21T00:00:00`,
+        TransactionAmount: Number(dayTwentyoneAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentyoneComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentyoneInv),
+        TotalItemSold: Number(dayTwentyoneItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-22T00:00:00`,
+        TransactionAmount: Number(dayTwentytwoAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentytwoComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentytwoInv),
+        TotalItemSold: Number(dayTwentytwoItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-23T00:00:00`,
+        TransactionAmount: Number(dayTwentythreeAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentythreeComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentythreeInv),
+        TotalItemSold: Number(dayTwentythreeItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-24T00:00:00`,
+        TransactionAmount: Number(dayTwentyfourAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentyfourComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentyfourInv),
+        TotalItemSold: Number(dayTwentyfourItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-25T00:00:00`,
+        TransactionAmount: Number(dayTwentyfiveAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentyfiveComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentyfiveInv),
+        TotalItemSold: Number(dayTwentyfiveItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-26T00:00:00`,
+        TransactionAmount: Number(dayTwentysixAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentysixComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentysixInv),
+        TotalItemSold: Number(dayTwentysixItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-27T00:00:00`,
+        TransactionAmount: Number(dayTwentysevenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentysevenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentysevenInv),
+        TotalItemSold: Number(dayTwentysevenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-28T00:00:00`,
+        TransactionAmount: Number(dayTwentyeightAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentyeightComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentyeightInv),
+        TotalItemSold: Number(dayTwentyeightItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-29T00:00:00`,
+        TransactionAmount: Number(dayTwentynineAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentynineComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentynineInv),
+        TotalItemSold: Number(dayTwentynineItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+    ],
+
+    PropertyName: null,
+    LeaseUnitCode: null,
+    LeaseBrandName: null,
+    TransactionYear: null,
+    TransactionDate_Str: null,
+    SaleTransactionStatus_Str: null,
+    Day: 0,
+    Month: 0,
+    Year: 0,
+    RequestNumber: null,
+    ContactCode: null,
+    CreatedUserId: 0,
+    CreatedByEmail: null,
+    SalesType: null,
+    TransactionTypeStr: null,
+    SaleTransactionSourceStr: null,
+    GrandTotalTransactionAmount: 0,
+    GrandTotalTransactionAmount_Str: null,
+    GrandTotalTotalInvoices: 0,
+    GrandTotalTotalInvoices_Str: null,
+    GrandTotalTotalItemSold: 0,
+    GrandTotalTotalItemSold_Str: null,
+  };
+  const body28 = {
+    LeaseCode: "t0001235",
+    SalesTypeCode: "fnb",
+    PropertyCode: "mgb",
+    TransactionDate: formattedDate,
+    TransactionSource: 1,
+    RequestStatus: 2,
+    SalesRequestComments: mainComment,
+    TransactionType: 1,
+    SalesRequestId: 0,
+
+    BulkSalesModels: [
+      {
+        LeaseCode: "t0001235",
+        SalesTypeCode: "fnb",
+        PropertyCode: "mgb",
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TransactionType: 1,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-01T00:00:00`,
+        TotalInvoices: Number(dayOneInv),
+        TotalItemSold: Number(dayOneItemSold),
+        TransactionAmount: Number(dayOneAmount),
+
+        SaleTransactionComments: dayOneComment,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+
+        TransactionId: 0,
+        TransactionNumber: null,
+        Year: 0,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-02T00:00:00`,
+        TransactionAmount: Number(dayTwoAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwoComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwoInv),
+        TotalItemSold: Number(dayTwoItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-03T00:00:00`,
+        TransactionAmount: Number(dayThreeAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayThreeComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayThreeInv),
+        TotalItemSold: Number(dayThreeItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-04T00:00:00`,
+        TransactionAmount: Number(dayFourAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayFourComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayFourInv),
+        TotalItemSold: Number(dayFourItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-05T00:00:00`,
+        TransactionAmount: Number(dayFiveAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayFiveComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayFiveInv),
+        TotalItemSold: Number(dayFiveItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-06T00:00:00`,
+        TransactionAmount: Number(daySixAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: daySixComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(daySixInv),
+        TotalItemSold: Number(daySixItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-07T00:00:00`,
+        TransactionAmount: Number(daySevenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: daySevenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(daySevenInv),
+        TotalItemSold: Number(daySevenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-08T00:00:00`,
+        TransactionAmount: Number(dayEightAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayEightComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayEightInv),
+        TotalItemSold: Number(dayEightItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-09T00:00:00`,
+        TransactionAmount: Number(dayNineAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayNineComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayNineInv),
+        TotalItemSold: Number(dayNineItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-10T00:00:00`,
+        TransactionAmount: Number(dayTenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTenInv),
+        TotalItemSold: Number(dayTenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-11T00:00:00`,
+        TransactionAmount: Number(dayElevenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayElevenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayElevenInv),
+        TotalItemSold: Number(dayElevenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-12T00:00:00`,
+        TransactionAmount: Number(dayTwelveAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwelveComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwelveInv),
+        TotalItemSold: Number(dayTwelveItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-13T00:00:00`,
+        TransactionAmount: Number(dayThirteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayThirteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayThirteenInv),
+        TotalItemSold: Number(dayThirteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-14T00:00:00`,
+        TransactionAmount: Number(dayFourteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayFourteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayFourteenInv),
+        TotalItemSold: Number(dayFourteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-15T00:00:00`,
+        TransactionAmount: Number(dayFifteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayFifteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayFifteenInv),
+        TotalItemSold: Number(dayFifteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-16T00:00:00`,
+        TransactionAmount: Number(daySixteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: daySixteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(daySixteenInv),
+        TotalItemSold: Number(daySixteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-17T00:00:00`,
+        TransactionAmount: Number(daySeventeenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: daySeventeenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(daySeventeenInv),
+        TotalItemSold: Number(daySeventeenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-18T00:00:00`,
+        TransactionAmount: Number(dayEighteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayEighteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayEighteenInv),
+        TotalItemSold: Number(dayEighteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-19T00:00:00`,
+        TransactionAmount: Number(dayNineteenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayNineteenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayNineteenInv),
+        TotalItemSold: Number(dayNineteenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-20T00:00:00`,
+        TransactionAmount: Number(dayTwentyAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentyComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentyInv),
+        TotalItemSold: Number(dayTwentyItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-21T00:00:00`,
+        TransactionAmount: Number(dayTwentyoneAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentyoneComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentyoneInv),
+        TotalItemSold: Number(dayTwentyoneItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-22T00:00:00`,
+        TransactionAmount: Number(dayTwentytwoAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentytwoComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentytwoInv),
+        TotalItemSold: Number(dayTwentytwoItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-23T00:00:00`,
+        TransactionAmount: Number(dayTwentythreeAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentythreeComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentythreeInv),
+        TotalItemSold: Number(dayTwentythreeItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-24T00:00:00`,
+        TransactionAmount: Number(dayTwentyfourAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentyfourComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentyfourInv),
+        TotalItemSold: Number(dayTwentyfourItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-25T00:00:00`,
+        TransactionAmount: Number(dayTwentyfiveAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentyfiveComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentyfiveInv),
+        TotalItemSold: Number(dayTwentyfiveItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-26T00:00:00`,
+        TransactionAmount: Number(dayTwentysixAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentysixComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentysixInv),
+        TotalItemSold: Number(dayTwentysixItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-27T00:00:00`,
+        TransactionAmount: Number(dayTwentysevenAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentysevenComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentysevenInv),
+        TotalItemSold: Number(dayTwentysevenItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-28T00:00:00`,
+        TransactionAmount: Number(dayTwentyeightAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentyeightComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentyeightInv),
+        TotalItemSold: Number(dayTwentyeightItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+
+      {
+        TransactionId: 0,
+        TransactionNumber: null,
+        TransactionDate: `${currentYear}-${
+          String(currentMonth + 1).length === 1
+            ? `0${currentMonth + 1}`
+            : currentMonth
+        }-29T00:00:00`,
+        TransactionAmount: Number(dayTwentynineAmount),
+        LeaseCode: "t0001235",
+        PropertyCode: "mgb",
+        Year: 0,
+        TransactionType: 1,
+        CreatedUserId: 0,
+        CreatedByEmail: null,
+        CustomerCode: null,
+        FileAttachmentBase64: null,
+        FileAttachmentTitle: null,
+        FileAttachmentContentType: null,
+        SaleTransactionComments: dayTwentynineComment,
+        SaleTransactionStatus: 2,
+        SaleTransactionSource: 1,
+        TotalInvoices: Number(dayTwentynineInv),
+        TotalItemSold: Number(dayTwentynineItemSold),
+        PropertyName: null,
+        ModifiedBy: 0,
+        ModifiedByName: null,
+        TransactionAmount_Str: null,
+        TotalInvoices_Str: null,
+        TotalItemSold_Str: null,
+        SubmissionDate: "0001-01-01T00:00:00",
+        SubmissionDate_Str: null,
+        SalesTypeCode: "fnb",
+      },
+    ],
+
+    PropertyName: null,
+    LeaseUnitCode: null,
+    LeaseBrandName: null,
+    TransactionYear: null,
+    TransactionDate_Str: null,
+    SaleTransactionStatus_Str: null,
+    Day: 0,
+    Month: 0,
+    Year: 0,
+    RequestNumber: null,
+    ContactCode: null,
+    CreatedUserId: 0,
+    CreatedByEmail: null,
+    SalesType: null,
+    TransactionTypeStr: null,
+    SaleTransactionSourceStr: null,
+    GrandTotalTransactionAmount: 0,
+    GrandTotalTransactionAmount_Str: null,
+    GrandTotalTotalInvoices: 0,
+    GrandTotalTotalInvoices_Str: null,
+    GrandTotalTotalItemSold: 0,
     GrandTotalTotalItemSold_Str: null,
   };
 
-  useEffect(() => {
-    console.log(body);
-  }, [dayOneAmount, dayOneComment, dayOneInv, dayOneItemSold]);
+  const url = "http://localhost:3000/post-daily-sales";
+
+  const headers = {
+    tenant: "mgb.map.eaglehills.com",
+    "Ocp-Apim-Subscription-Key": "b652a304ec8143f8aeb8a879c9911f45",
+    Authorization: token,
+  };
+
+  const sendToBackend = async () => {
+    try {
+      if (daysInMonth == 28) {
+        const response = await axios.post(url, body28, { headers });
+        setData(response.data);
+        console.log("Response from backend:", response.data);
+      } else if (daysInMonth == 29) {
+        const response = await axios.post(url, body29, { headers });
+        setData(response.data);
+        console.log("Response from backend:", response.data);
+      } else if (daysInMonth == 30) {
+        const response = await axios.post(url, body30, { headers });
+        setData(response.data);
+        console.log("Response from backend:", response.data);
+      } else if (daysInMonth == 31) {
+        const response = await axios.post(url, body31, { headers });
+        setData(response.data);
+        console.log("Response from backend:", response.data);
+      }
+    } catch (error) {
+      console.error("Error sending data to backend:", error);
+    }
+  };
+  // const handleSubmit = async (e) => {
+  //   if (daysInMonth === 28) {
+  //     try {
+  //       const response = await axios.post(url, body28, { headers });
+  //       console.log(response.data);
+  //     } catch (error) {
+  //       console.error("Error:", error);
+  //     }
+  //   } else if (daysInMonth === 29) {
+  //     try {
+  //       const response = await axios.post(url, body29, { headers });
+  //       console.log(response.data);
+  //     } catch (error) {
+  //       console.error("Error:", error);
+  //     }
+  //   } else if (daysInMonth === 30) {
+  //     try {
+  //       const response = await axios.post(url, body30, { headers });
+  //       console.log(response.data);
+  //     } catch (error) {
+  //       console.error("Error:", error);
+  //     }
+  //   } else if (daysInMonth === 31) {
+  //     try {
+  //       const response = await axios.post(url, body31, { headers });
+  //       console.log(response.data);
+  //     } catch (error) {
+  //       console.error("Error:", error);
+  //     }
+  //   } else {
+  //     console.log("days in month can't be more than 31 or less than 28");
+  //   }
+  // };
 
   return (
     <>
@@ -1404,6 +4662,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -1413,6 +4672,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -1422,6 +4682,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -1446,6 +4707,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -1455,6 +4717,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -1464,6 +4727,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -1488,6 +4752,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -1497,6 +4762,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -1506,6 +4772,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -1530,6 +4797,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -1539,6 +4807,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -1548,6 +4817,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -1572,6 +4842,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -1581,6 +4852,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -1590,6 +4862,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -1614,6 +4887,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -1623,6 +4897,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -1632,6 +4907,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -1656,6 +4932,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -1665,6 +4942,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -1674,6 +4952,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -1698,6 +4977,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -1707,6 +4987,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -1716,6 +4997,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -1740,6 +5022,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -1749,6 +5032,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -1758,6 +5042,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -1782,6 +5067,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -1791,6 +5077,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -1800,6 +5087,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -1824,6 +5112,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -1833,6 +5122,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -1842,6 +5132,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -1866,6 +5157,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -1875,6 +5167,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -1884,6 +5177,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -1908,6 +5202,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -1917,6 +5212,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -1926,6 +5222,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -1950,6 +5247,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -1959,6 +5257,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -1968,6 +5267,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -1992,6 +5292,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -2001,6 +5302,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -2010,6 +5312,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -2034,6 +5337,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -2043,6 +5347,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -2052,6 +5357,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -2076,6 +5382,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -2085,6 +5392,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -2094,6 +5402,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -2118,6 +5427,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -2127,6 +5437,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -2136,6 +5447,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -2160,6 +5472,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -2169,6 +5482,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -2178,6 +5492,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -2202,6 +5517,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -2211,6 +5527,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -2220,6 +5537,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -2244,6 +5562,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -2253,6 +5572,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -2262,6 +5582,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -2286,6 +5607,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -2295,6 +5617,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -2304,6 +5627,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -2328,6 +5652,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -2337,6 +5662,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -2346,6 +5672,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -2370,6 +5697,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -2379,6 +5707,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -2388,6 +5717,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -2412,6 +5742,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -2421,6 +5752,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -2430,6 +5762,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -2454,6 +5787,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -2463,6 +5797,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -2472,6 +5807,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -2496,6 +5832,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -2505,6 +5842,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -2514,6 +5852,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -2538,6 +5877,7 @@ const Form = ({ token }) => {
         <div className="flex w-full items-start space-x-10 pb-5">
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Sold Items"
             onChange={(e) => {
@@ -2547,6 +5887,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Number of Invoices"
             onChange={(e) => {
@@ -2556,6 +5897,7 @@ const Form = ({ token }) => {
           />
           <input
             type="number"
+            min="0"
             className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Transaction Amount"
             onChange={(e) => {
@@ -2573,78 +5915,39 @@ const Form = ({ token }) => {
           }}
         />
       </div>
-      <div className="w-4/5 flex flex-col items-start text-left">
-        <h3 className="self-left text-[#fff] text-xl mb-3 tracking-widest">
-          29 - {currentMonth + 1} - {currentYear}
-        </h3>
-        <div className="flex w-full items-start space-x-10 pb-5">
-          <input
-            type="number"
-            className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
-            placeholder="Number of Sold Items"
-            onChange={(e) => {
-              setDayTwentynineItemSold(e.target.value);
-            }}
-            required
-          />
-          <input
-            type="number"
-            className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
-            placeholder="Number of Invoices"
-            onChange={(e) => {
-              setDayTwentynineInv(e.target.value);
-            }}
-            required
-          />
-          <input
-            type="number"
-            className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
-            placeholder="Transaction Amount"
-            onChange={(e) => {
-              setDayTwentynineAmount(e.target.value);
-            }}
-            required
-          />
-        </div>
-        <input
-          type="text"
-          className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
-          placeholder="Any Comments ... (optional)"
-          onChange={(e) => {
-            setDayTwentynineComment(e.target.value);
-          }}
-        />
-      </div>
-      {daysInMonth === 30 ? (
+      {daysInMonth === 29 ? (
         <div className="w-4/5 flex flex-col items-start text-left">
           <h3 className="self-left text-[#fff] text-xl mb-3 tracking-widest">
-            30 - {currentMonth + 1} - {currentYear}
+            29 - {currentMonth + 1} - {currentYear}
           </h3>
           <div className="flex w-full items-start space-x-10 pb-5">
             <input
               type="number"
+              min="0"
               className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
               placeholder="Number of Sold Items"
               onChange={(e) => {
-                setDayThirtyItemSold(e.target.value);
+                setDayTwentynineItemSold(e.target.value);
               }}
               required
             />
             <input
               type="number"
+              min="0"
               className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
               placeholder="Number of Invoices"
               onChange={(e) => {
-                setDayThirtyInv(e.target.value);
+                setDayTwentynineInv(e.target.value);
               }}
               required
             />
             <input
               type="number"
+              min="0"
               className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
               placeholder="Transaction Amount"
               onChange={(e) => {
-                setDayThirtyAmount(e.target.value);
+                setDayTwentynineAmount(e.target.value);
               }}
               required
             />
@@ -2654,12 +5957,57 @@ const Form = ({ token }) => {
             className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
             placeholder="Any Comments ... (optional)"
             onChange={(e) => {
-              setDayThirtyComment(e.target.value);
+              setDayTwentynineComment(e.target.value);
             }}
           />
         </div>
-      ) : daysInMonth === 31 ? (
+      ) : daysInMonth === 30 ? (
         <>
+          <div className="w-4/5 flex flex-col items-start text-left">
+            <h3 className="self-left text-[#fff] text-xl mb-3 tracking-widest">
+              29 - {currentMonth + 1} - {currentYear}
+            </h3>
+            <div className="flex w-full items-start space-x-10 pb-5">
+              <input
+                type="number"
+                min="0"
+                className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
+                placeholder="Number of Sold Items"
+                onChange={(e) => {
+                  setDayTwentynineItemSold(e.target.value);
+                }}
+                required
+              />
+              <input
+                type="number"
+                min="0"
+                className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
+                placeholder="Number of Invoices"
+                onChange={(e) => {
+                  setDayTwentynineInv(e.target.value);
+                }}
+                required
+              />
+              <input
+                type="number"
+                min="0"
+                className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
+                placeholder="Transaction Amount"
+                onChange={(e) => {
+                  setDayTwentynineAmount(e.target.value);
+                }}
+                required
+              />
+            </div>
+            <input
+              type="text"
+              className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
+              placeholder="Any Comments ... (optional)"
+              onChange={(e) => {
+                setDayTwentynineComment(e.target.value);
+              }}
+            />
+          </div>
           <div className="w-4/5 flex flex-col items-start text-left">
             <h3 className="self-left text-[#fff] text-xl mb-3 tracking-widest">
               30 - {currentMonth + 1} - {currentYear}
@@ -2667,6 +6015,7 @@ const Form = ({ token }) => {
             <div className="flex w-full items-start space-x-10 pb-5">
               <input
                 type="number"
+                min="0"
                 className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
                 placeholder="Number of Sold Items"
                 onChange={(e) => {
@@ -2676,6 +6025,7 @@ const Form = ({ token }) => {
               />
               <input
                 type="number"
+                min="0"
                 className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
                 placeholder="Number of Invoices"
                 onChange={(e) => {
@@ -2685,6 +6035,100 @@ const Form = ({ token }) => {
               />
               <input
                 type="number"
+                min="0"
+                className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
+                placeholder="Transaction Amount"
+                onChange={(e) => {
+                  setDayThirtyAmount(e.target.value);
+                }}
+                required
+              />
+            </div>
+            <input
+              type="text"
+              className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
+              placeholder="Any Comments ... (optional)"
+              onChange={(e) => {
+                setDayThirtyComment(e.target.value);
+              }}
+            />
+          </div>
+        </>
+      ) : daysInMonth === 31 ? (
+        <>
+          <div className="w-4/5 flex flex-col items-start text-left">
+            <h3 className="self-left text-[#fff] text-xl mb-3 tracking-widest">
+              29 - {currentMonth + 1} - {currentYear}
+            </h3>
+            <div className="flex w-full items-start space-x-10 pb-5">
+              <input
+                type="number"
+                min="0"
+                className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
+                placeholder="Number of Sold Items"
+                onChange={(e) => {
+                  setDayTwentynineItemSold(e.target.value);
+                }}
+                required
+              />
+              <input
+                type="number"
+                min="0"
+                className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
+                placeholder="Number of Invoices"
+                onChange={(e) => {
+                  setDayTwentynineInv(e.target.value);
+                }}
+                required
+              />
+              <input
+                type="number"
+                min="0"
+                className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
+                placeholder="Transaction Amount"
+                onChange={(e) => {
+                  setDayTwentynineAmount(e.target.value);
+                }}
+                required
+              />
+            </div>
+            <input
+              type="text"
+              className="w-full py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
+              placeholder="Any Comments ... (optional)"
+              onChange={(e) => {
+                setDayTwentynineComment(e.target.value);
+              }}
+            />
+          </div>
+          <div className="w-4/5 flex flex-col items-start text-left">
+            <h3 className="self-left text-[#fff] text-xl mb-3 tracking-widest">
+              30 - {currentMonth + 1} - {currentYear}
+            </h3>
+            <div className="flex w-full items-start space-x-10 pb-5">
+              <input
+                type="number"
+                min="0"
+                className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
+                placeholder="Number of Sold Items"
+                onChange={(e) => {
+                  setDayThirtyItemSold(e.target.value);
+                }}
+                required
+              />
+              <input
+                type="number"
+                min="0"
+                className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
+                placeholder="Number of Invoices"
+                onChange={(e) => {
+                  setDayThirtyInv(e.target.value);
+                }}
+                required
+              />
+              <input
+                type="number"
+                min="0"
                 className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
                 placeholder="Transaction Amount"
                 onChange={(e) => {
@@ -2709,6 +6153,7 @@ const Form = ({ token }) => {
             <div className="flex w-full items-start space-x-10 pb-5">
               <input
                 type="number"
+                min="0"
                 className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
                 placeholder="Number of Sold Items"
                 onChange={(e) => {
@@ -2718,6 +6163,7 @@ const Form = ({ token }) => {
               />
               <input
                 type="number"
+                min="0"
                 className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
                 placeholder="Number of Invoices"
                 onChange={(e) => {
@@ -2727,6 +6173,7 @@ const Form = ({ token }) => {
               />
               <input
                 type="number"
+                min="0"
                 className="w-2/6 py-5 border-b-[1px] border-[#fff] px-3 bg-[rgba(255,255,255,0.85)] placeholder:text-[#000] text-[#000]"
                 placeholder="Transaction Amount"
                 onChange={(e) => {
@@ -2748,6 +6195,20 @@ const Form = ({ token }) => {
       ) : (
         <></>
       )}
+      <div className="w-full py-10 space-x-10">
+        <button
+          className="cbtn"
+          data-another-text="Send Daily Sales"
+          onClick={sendToBackend}
+        >
+          Submit
+        </button>
+        <Link to={"/"}>
+          <button className="cbtn" data-another-text="Back to home">
+            Cancel
+          </button>
+        </Link>
+      </div>
     </>
   );
 };
