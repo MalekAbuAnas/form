@@ -15,6 +15,7 @@ const Form = ({ token }) => {
   //MAIN COMMENT
   const [mainComment, setMainComment] = useState("");
   const [data, setData] = useState({});
+  const [response, setResponse] = useState(null);
 
   // TOTAL INVOICES BY DAYS
   const [dayOneInv, setDayOneInv] = useState(0);
@@ -4579,70 +4580,51 @@ const Form = ({ token }) => {
     GrandTotalTotalItemSold_Str: null,
   };
 
-  const url = "http://localhost:3000/post-daily-sales";
+  const handleClick = (event) => {
+    event.preventDefault();
+    const KEY = "b652a304ec8143f8aeb8a879c9911f45";
+    const tokenFromState = token; // استبدله بقيمة الرمز الخاص بك
 
-  const headers = {
-    tenant: "mgb.map.eaglehills.com",
-    "Ocp-Apim-Subscription-Key": "b652a304ec8143f8aeb8a879c9911f45",
-    Authorization: token,
-  };
-
-  const sendToBackend = async () => {
-    try {
-      if (daysInMonth == 28) {
-        const response = await axios.post(url, body28, { headers });
-        setData(response.data);
-        console.log("Response from backend:", response.data);
-      } else if (daysInMonth == 29) {
-        const response = await axios.post(url, body29, { headers });
-        setData(response.data);
-        console.log("Response from backend:", response.data);
-      } else if (daysInMonth == 30) {
-        const response = await axios.post(url, body30, { headers });
-        setData(response.data);
-        console.log("Response from backend:", response.data);
-      } else if (daysInMonth == 31) {
-        const response = await axios.post(url, body31, { headers });
-        setData(response.data);
-        console.log("Response from backend:", response.data);
-      }
-    } catch (error) {
-      console.error("Error sending data to backend:", error);
+    let body;
+    switch (daysInMonth) {
+      case 28:
+        body = body28;
+        break;
+      case 29:
+        body = body29;
+        break;
+      case 30:
+        body = body30;
+        break;
+      default:
+        body = body31;
     }
+
+    axios
+      .post(
+        "https://localhost:3000/post-daily-sales",
+        body, // تمرير الجسم مباشرة دون تغليفه في كائن
+        {
+          headers: {
+            "Ocp-Apim-Subscription-Key": KEY,
+            "Content-Type": "application/json",
+            tenant: "mgb.map.eaglehills.com",
+            Authorization: `Bearer ${tokenFromState}`,
+          },
+        }
+      )
+      .then((response) => {
+        event.preventDefault();
+        console.log(response.data);
+        alert("Success");
+      })
+      .catch((error) => {
+        event.preventDefault();
+        console.error("There was a problem with the request:", error);
+        alert("Error");
+      });
+    event.preventDefault();
   };
-  // const handleSubmit = async (e) => {
-  //   if (daysInMonth === 28) {
-  //     try {
-  //       const response = await axios.post(url, body28, { headers });
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       console.error("Error:", error);
-  //     }
-  //   } else if (daysInMonth === 29) {
-  //     try {
-  //       const response = await axios.post(url, body29, { headers });
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       console.error("Error:", error);
-  //     }
-  //   } else if (daysInMonth === 30) {
-  //     try {
-  //       const response = await axios.post(url, body30, { headers });
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       console.error("Error:", error);
-  //     }
-  //   } else if (daysInMonth === 31) {
-  //     try {
-  //       const response = await axios.post(url, body31, { headers });
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       console.error("Error:", error);
-  //     }
-  //   } else {
-  //     console.log("days in month can't be more than 31 or less than 28");
-  //   }
-  // };
 
   return (
     <>
@@ -6199,7 +6181,7 @@ const Form = ({ token }) => {
         <button
           className="cbtn"
           data-another-text="Send Daily Sales"
-          onClick={sendToBackend}
+          onClick={handleClick}
         >
           Submit
         </button>

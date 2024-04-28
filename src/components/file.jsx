@@ -1,36 +1,92 @@
-const express = require("express");
-const axios = require("axios");
-const app = express();
-const port = 3000;
+import { useState } from "react";
+import axios from "axios";
 
-app.use(express.json());
+function FormField({ label, value, onChange }) {
+  return (
+    <div>
+      <label>{label}</label>
+      <input type="number" value={value} onChange={onChange} />
+    </div>
+  );
+}
 
-app.post("/post-daily-sales", async (req, res) => {
-  const requestBody = req.body;
-  const headers = req.headers; // هنا يتم استلام الهيدرز
-  const token = headers.authorization; // هنا يتم استخراج التوكن
+function App() {
+  const [formData, setFormData] = useState({
+    totalInvoices: 0,
+    totalItemsSold: 0,
+    transactionAmount: 0,
+    saleTransactionComments: "",
+  });
 
-  console.log("Received data from frontend:", requestBody);
-  console.log("Received headers:", headers);
-  console.log("Received token:", token);
+  const handleChange = (e, field) => {
+    setFormData({ ...formData, [field]: e.target.value });
+  };
 
-  // Perform necessary operations with the received data
+  const handleSubmit = () => {
+    // إنشاء الكائن JSON
+    const data = {
+      ...formData,
+      transactionDate: new Date().toISOString().slice(0, 10), // تحديد التاريخ تلقائياً
+    };
 
-  // الآن يمكننا إرسال البيانات إلى API الآخر
-  try {
-    const otherAPIResponse = await axios.post(
-      "https://azmapapimgmtprod1.azure-api.net/bulkSalesinfo/api/BulkSales",
-      requestBody,
-      { headers }
-    );
-    console.log("Response from other API:", otherAPIResponse.data);
-    res.send("Data received successfully and sent to other API!");
-  } catch (error) {
-    console.error("Error sending data to other API:", error);
-    res.status(500).send("Error sending data to other API");
-  }
-});
+    // إرسال البيانات إلى الخادم
+    axios
+      .post("YOUR_API_ENDPOINT", data)
+      .then((response) => {
+        console.log("Data submitted successfully:", response.data);
+        // إعادة تعيين الفورم بعد النجاح
+        setFormData({
+          totalInvoices: 0,
+          totalItemsSold: 0,
+          transactionAmount: 0,
+          saleTransactionComments: "",
+        });
+      })
+      .catch((error) => {
+        console.error("Error submitting data:", error);
+      });
+  };
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+  return (
+    <div className="App">
+      <h1>Sales Form</h1>
+      <FormField
+        label="Total Invoices"
+        value={formData.totalInvoices}
+        onChange={(e) => handleChange(e, "totalInvoices")}
+      />
+      <FormField
+        label="Total Items Sold"
+        value={formData.totalItemsSold}
+        onChange={(e) => handleChange(e, "totalItemsSold")}
+      />
+      <FormField
+        label="Transaction Amount"
+        value={formData.transactionAmount}
+        onChange={(e) => handleChange(e, "transactionAmount")}
+      />
+      <div>
+        <label>Comments</label>
+        <textarea
+          value={formData.saleTransactionComments}
+          onChange={(e) => handleChange(e, "saleTransactionComments")}
+        />
+      </div>
+      <button onClick={handleSubmit}>Submit</button>
+      <button
+        onClick={() =>
+          setFormData({
+            totalInvoices: 0,
+            totalItemsSold: 0,
+            transactionAmount: 0,
+            saleTransactionComments: "",
+          })
+        }
+      >
+        Cancel
+      </button>
+    </div>
+  );
+}
+
+export default App;

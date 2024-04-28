@@ -7,7 +7,7 @@ export default function Dailyform() {
   const [token, setToken] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api-call").then((response) => {
+    axios.get("https://localhost:3000/api-call").then((response) => {
       const responseData = response.data;
       setToken(String(responseData.jwtSecurityToken));
       setTransfared(true);
